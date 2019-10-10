@@ -6,14 +6,15 @@
 
 actor: AcceptanceTester
 modules:
-    enabled:
-        - WebDriver:
-            url: 'http://zcms.test'
-            host: 172.25.0.5
-            port: 4444
-            browser: phantomjs
-            window_size: 1024x768
-            capabilities:
-                unexpectedAlertBehaviour: 'accept'
-                webStorageEnabled: true
-        - \Helper\Acceptance
+  enabled:
+    - WebDriver:
+        url: 'http://zcms.test'
+        host: 172.25.0.5
+        port: 4444
+        browser: phantomjs
+        window_size: 1024x768
+        capabilities:
+          unexpectedAlertBehaviour: 'accept'
+          webStorageEnabled: true
+
+    - \Helper\Acceptance
