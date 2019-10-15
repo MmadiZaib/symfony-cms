@@ -1,3 +1,4 @@
 #!/bin/bash
-docker-compose exec php-fpm bin/console cache:clear --no-warmup
-docker-compose exec php-fpm vendor/bin/codecept run acceptance
+scripts/resetapp
+docker-compose exec php-fpm vendor/bin/codecept run acceptance $@
+#vendor/bin/codecept run acceptance $@
