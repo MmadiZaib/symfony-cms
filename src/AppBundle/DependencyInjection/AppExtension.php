@@ -1,10 +1,10 @@
 <?php
+namespace AppBundle\DependencyInjection;
 
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use AppBundle\DependencyInjection\Configuration;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 class AppExtension extends Extension
 {
@@ -22,7 +22,7 @@ class AppExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-        $loader->load('service.yml');
+        $loader->load('services.yml');
 
     }
 }

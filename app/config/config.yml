@@ -89,8 +89,56 @@ fos_user:
     sender_name: "zcms admin"
 
 easy_admin:
+    site_name: ZCMS
     entities:
-        - AppBundle\Entity\User
-
+        User:
+            class: AppBundle\Entity\User
+            controller: AppBundle\Controller\AdminController
+            label: "User Management"
+            # for new user
+            new:
+                fields:
+                    - username
+                    - firstname
+                    - lastname
+                    - { property: 'plainPassword', type: 'repeated', type_options: { type: 'Symfony\Component\Form\Extension\Core\Type\PasswordType', required: false, first_options: { label: 'Password'}, second_options: { label: 'Repeat Password'}, invalid_message: 'The password fields must match.' }}
+                    - { property: 'email', type: 'email', type_options: { trim: true } }
+                    - roles
+                    - enabled
+            show:
+                actions: ['edit', '-delete', '-list']
+                fields:
+                    - id
+                    - username
+                    - firstname
+                    - lastname
+                    - email
+                    - roles
+                    - enabled
+                    - { property: 'last_login', type: 'datetime' }
+                    - modified
+                    - created
+            edit:
+                actions: ['-delete', '-list']
+                fields:
+                    - username
+                    - firstname
+                    - lastname
+                    - { property: 'plainPassword', type: 'repeated', type_options: { type: 'Symfony\Component\Form\Extension\Core\Type\PasswordType', required: false, first_options: { label: 'Password'}, second_options: { label: 'Repeat Password'}, invalid_message: 'The password fields must match.' }}
+                    - { property: 'email', type: 'email', type_options: { trim: true } }
+                    - roles
+                    - enabled
+            list:
+                title: 'User listing'
+                actions: ['show']
+                fields:
+                    - id
+                    - username
+                    - email
+                    - firstname
+                    - lastname
+                    - enabled
+                    - roles
+                    - { property: 'last_login', type: 'datetime' }
 
 

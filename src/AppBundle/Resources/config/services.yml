@@ -1,0 +1,7 @@
+services:
+  # note that thi name is important. its how we  reference the class throught the site
+  app.subscriber:
+    class: AppBundle\EventListener\AppSubscriber
+    arguments:  ["@service_container"]
+    tags:
+      - { name: kernel.event_subscriber }
