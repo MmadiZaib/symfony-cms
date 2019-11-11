@@ -21,8 +21,6 @@ class AdminController extends BaseAdminController
         $entity = $easyadmin['item'];
         $fields = $this->entity['show']['fields'];
 
-       // dump($fields);die;
-
         if (!$this->isGranted('ROLE_SUPER_ADMIN')) {
             unset($fields['created']);
         }
