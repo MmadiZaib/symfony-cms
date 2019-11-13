@@ -4,4 +4,4 @@ rm -rf var/cache/*
 scripts/console doctrine:database:drop --force
 scripts/console doctrine:database:create
 scripts/console doctrine:schema:create
-scripts/console doctrin:fixtures:load -n
+scripts/console doctrine:fixtures:load -n
