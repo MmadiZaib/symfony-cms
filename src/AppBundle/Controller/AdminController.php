@@ -5,6 +5,8 @@ namespace AppBundle\Controller;
 
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
 use EasyCorp\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class AdminController extends BaseAdminController
@@ -86,6 +88,16 @@ class AdminController extends BaseAdminController
             'entity'        => $entity,
             'delete_form'   => $deleteForm->createView(),
         ));
+    }
+
+    /**
+     * @Route("/dashboard", name="dashboard")
+     * @param Request $request
+     * @return Response
+     */
+    public function dashboardAction(Request $request)
+    {
+        return $this->render("@EasyAdmin/default/dashboard.html.twig");
     }
 
     public function createNewEntity()

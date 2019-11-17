@@ -5,10 +5,14 @@ namespace AppBundle\EventListener;
 
 
 use EasyCorp\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
+use FOS\UserBundle\Event\FormEvent;
+use FOS\UserBundle\FOSUserBundle;
+use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class AppSubscriber implements EventSubscriberInterface
 {
@@ -49,6 +53,7 @@ class AppSubscriber implements EventSubscriberInterface
             EasyAdminEvents::PRE_SHOW => 'checkUserRights',
             EasyAdminEvents::PRE_NEW => 'checkUserRights',
             EasyAdminEvents::PRE_DELETE => 'checkUserRights',
+            FOSUserEvents::RESETTING_RESET_SUCCESS => 'redirectUserAfterPasswordReset'
         );
     }
 
@@ -83,5 +88,15 @@ class AppSubscriber implements EventSubscriberInterface
         // throw exception in all cases
         throw new AccessDeniedException();
 
+    }
+
+    /**
+     * @param FormEvent $event
+     * @return null
+     */
+    public function redirectUserAfterPasswordReset(FormEvent $event)
+    {
+        $url = $this->container->get('router')->generate('admin');
+        $event->setResponse(new RedirectResponse($url));
     }
 }

@@ -1,0 +1,6 @@
+{% extends '@EasyAdmin/default/layout.html.twig' %}
+
+{% block main %}
+    <p>Dear {{ app.user.firstname }} {{ app.user.lastname }}</p>
+    <p>You are last logged in at {{ app.user.lastLogin|date('Y-m-d H:i:s') }}</p>
+{% endblock %}

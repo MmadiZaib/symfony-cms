@@ -16,4 +16,7 @@ modules:
               capabilities:
                   unexpectedAlertBehaviour: 'accept'
                   webStorageEnabled: true
+        - MailHog:
+              url: 'http://zcms.test'
+              port: '8025'
         - \Helper\Acceptance
