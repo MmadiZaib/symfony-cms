@@ -1,0 +1,8 @@
+admin:
+  link:
+    user_managment: "User Management"
+    profile: "My Profile"
+dashboard:
+  welcome:
+    last_login: "You last login at"
+    title: "Welcome to zcms"

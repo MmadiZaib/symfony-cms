@@ -7,12 +7,13 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    supported_lang: ['en', 'fr']
     admin_path: admin
 
 
 framework:
     #esi:             ~
-    translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: ["%locale%", fr] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -39,6 +40,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        supported_lang: %supported_lang%
 
 # Doctrine Configuration
 doctrine:
@@ -95,7 +98,7 @@ easy_admin:
         User:
             class: AppBundle\Entity\User
             controller: AppBundle\Controller\AdminController
-            label: "User Management"
+            label: admin.link.user_managment
             # for new user
             new:
                 fields:
